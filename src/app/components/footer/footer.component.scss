@@ -1,0 +1,35 @@
+$black: #000;
+$gray:#b0c4de;
+$blue: rgba(0, 0, 255, 0.93);
+
+.content {
+  width: 100%;
+  min-height: 100px;
+  background-color: $gray;
+  padding: 10px;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+.list {
+  list-style-type: none;
+}
+.list > li{
+  font-size: 15px;
+  margin: 4px 0;
+  & >a{
+    text-decoration: none;
+    color: $black;
+    cursor: pointer;
+    &:hover{
+      color: $blue;
+    }
+  }
+}
+
+.footer-text{
+  text-align: right;
+  font-size: 12px;
+  margin: 5px;
+}

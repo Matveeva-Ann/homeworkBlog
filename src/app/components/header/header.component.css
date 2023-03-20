@@ -1,0 +1,95 @@
+.header {
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #b0c4de;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: 100px;
+  position: relative;
+}
+
+.brand {
+  text-decoration: none;
+  color: #fff;
+}
+.brand-img {
+  margin-left: 20px;
+  width: 150px;
+}
+.brand-text {
+  font-size: 35px;
+  vertical-align: top;
+  margin-left: 10px;
+  color: rgb(239, 239, 239);
+}
+
+.decorationImg {
+  width: auto;
+  height: 130px;
+  background-image: url(./depositphotos.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn {
+  cursor: pointer;
+  min-width: 65px;
+  height: 30px;
+  padding: 5px 10px;
+  color: #000;
+  font-size: 18px;
+  border: 1px solid;
+  margin-right: 15px;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 1px 3px 5px gray;
+  transition-duration: 0.3s;
+  background-color: #fff;
+}
+.btn:active {
+  transform: translate3d(0, 0.2em, 0);
+}
+.btn-singIn {
+  color: green;
+}
+.btn-singIn:hover {
+  background-color: green;
+  color: #fff;
+}
+.btn-signUp {
+  color: blue;
+}
+.btn-signUp:hover {
+  background-color: blue;
+  color: #fff;
+}
+.btn-addPost {
+  color: #6A5ACD;
+  border: 1px solid #6A5ACD;
+}
+.btn-addPost:hover {
+  background-color: #6A5ACD;
+  color: #fff;
+}
+.btn-signOut {
+  color: #DC143C;
+  border: 1px solid #DC143C;
+}
+.btn-signOut:hover {
+  background-color: #DC143C;
+  color: #fff;
+}
+
+.button-grup {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.userName {
+  font-size: 20px;
+}/*# sourceMappingURL=header.component.css.map */

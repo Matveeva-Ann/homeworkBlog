@@ -1,0 +1,22 @@
+<div class="conteiner">
+  <div class="content">
+    <div class="header">
+      <h4 class="header-title">Sign Up</h4>
+      <span class="header-cros" (click)="close()">&times;</span>
+    </div>
+    <div class="main">
+      <label for="username" class="label">Username:</label>
+      <input type="username" [(ngModel)]="usernameValue" id="username" placeholder="write here...">
+      <label for="email" class="label">Email:</label>
+      <input type="email" [(ngModel)]="emailValue" id="email" placeholder="write here...">
+      <label for="password" class="label">Password:</label>
+      <input type="password" [(ngModel)]="passwordValue" id="password" placeholder="write here...">
+      <p class="massage" *ngIf="showMassage">* Користувач з таким email вже існує</p>
+      <p class="massage" *ngIf="showMassage2">* Заповніть всі поля</p>
+    </div>
+    <div class="footer">
+      <button type="button" class="footer-btn" (click)="close()">Close</button>
+      <button type="button" class="footer-btn" (click)="submit()">Submit</button>
+    </div>
+  </div>
+</div>

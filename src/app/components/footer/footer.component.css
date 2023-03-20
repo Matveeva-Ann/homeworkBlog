@@ -1,0 +1,34 @@
+.content {
+  width: 100%;
+  min-height: 100px;
+  background-color: #b0c4de;
+  padding: 10px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.list {
+  list-style-type: none;
+}
+
+.list > li {
+  font-size: 15px;
+  margin: 4px 0;
+}
+.list > li > a {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+.list > li > a:hover {
+  color: rgba(0, 0, 255, 0.93);
+}
+
+.footer-text {
+  text-align: right;
+  font-size: 12px;
+  margin: 5px;
+}/*# sourceMappingURL=footer.component.css.map */

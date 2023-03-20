@@ -1,0 +1,19 @@
+<div class="conteiner">
+  <div class="content">
+    <div class="header">
+      <h4 class="header-title">Sign In</h4>
+      <span class="header-cros" (click)="close()">&times;</span>
+    </div>
+    <div class="main">
+      <label for="email" class="label">Email:</label>
+      <input type="email" [(ngModel)]="emailValue" id="email" placeholder="write here...">
+      <label for="password" class="label">Password:</label>
+      <input type="password" [(ngModel)]="passwordValue" id="password" placeholder="write here...">
+      <span class="message" *ngIf="wrongData"> * Неправильний логін або пароль</span>
+    </div>
+    <div class="footer">
+      <button type="button" class="footer-btn" (click)="close()">Close</button>
+      <button type="button" class="footer-btn" (click)="submit()">Submit</button>
+    </div>
+  </div>
+</div>

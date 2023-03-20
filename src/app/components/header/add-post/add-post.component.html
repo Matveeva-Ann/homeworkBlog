@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="content">
+    <div class="header">
+      <h3 class="header-title">Add Post</h3>
+      <span class="header-cross" (click)="closeClick()">&times;</span>
+    </div>
+    <form action="" class="forma" name="forma">
+      <label for="title">Title:</label>
+      <input type="text" id="title"  name="title" [(ngModel)]="titleValue">
+      <label for="category">Category:</label>
+      <select id="category" name="category" [(ngModel)]="categoryValue" required>
+        <option value="">Choose category</option>
+        <option value="sport">Sport</option>
+        <option value="economy">Economy</option>
+        <option value="world">World</option>
+        <option value="culture">Culture</option>
+        <option value="history">History</option>
+        <option value="science">Science</option>
+        <option value="policy">Policy</option>
+        <option value="other" >Other</option>
+      </select>
+      <label for="text">Text:</label>
+      <textarea name="text" id="text" [(ngModel)]="textValue"></textarea>
+      <label for="img"></label>
+      <input type="file" name="file" id="img">
+      <p class="message" *ngIf="incorrectlyFormMessage">* Сheck that the form is filled in correctly</p>
+    </form>
+    <div class="footer">
+      <button type="button" class="footer-btn" (click)="closeClick()">Close</button>
+      <ng-container *ngIf="changesButton; else elseTemplate">
+        <button type="button" class="footer-btn" (click)="submitClick()">Submit</button>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <button type="button" class="footer-btn" (click)="saveChanges()">Save changes</button>
+      </ng-template>      
+    </div>
+  </div>
+</div>

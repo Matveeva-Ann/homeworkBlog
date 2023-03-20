@@ -1,0 +1,98 @@
+
+.conteiner{
+  width: 80%;
+  min-height: 100vh;
+  box-shadow:  2px 5px 12px gray;
+  border-radius: 6px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+main{
+  flex-grow: 1;
+}
+
+
+.main-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: start;
+  flex-wrap: wrap;
+  padding: 15px;
+  // background: url(../assets/img/Culture.jpg);
+
+}
+.card{
+  width: 30%;
+  height: 450px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px gray;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin: calc(10%/6);
+  &-img{
+    width: 100%;
+    height: 230px;
+    background: url(../assets/img/Culture.jpg);
+    background-size: contain;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  &-caregori, &-data, &-autor{
+    font-size: 14px;
+    color: gray;
+  }
+  &-title{
+    padding: 5px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  &-text{
+    font-size: 1em;
+    height: 90px;
+    overflow: hidden;padding: 10px;
+    // border: 1px solid;
+  }
+  &-autor{
+    display: block;
+    width: 100%;
+    text-align: end;
+    padding: 5px;
+  }
+}
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 10px;
+}
+.buttonWraper{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  margin: 10px 0;
+}
+.btn{
+  width: 45%;
+  height:25px;
+  padding: 2px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 2px gray;
+  &:active{
+    transform: translate3d(0, 0.2em, 0);
+  }
+  &:hover{
+    opacity: 0.8;
+  }
+  &:nth-child(1){
+    background-color: #B0C4DE;
+  }
+  &:nth-child(2){
+    background-color: #C0C0C0;
+  }
+}

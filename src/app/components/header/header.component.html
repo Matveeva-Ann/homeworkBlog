@@ -1,0 +1,31 @@
+<header class="header">
+  <a class="brand" href="#">
+    <img src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png" class="brand-img" alt="angular">
+    <span class="brand-text">Blog</span>
+  </a>
+  <img src="./depositphotos.png" alt="news" class="decorationImg">
+  <div class="buttons-box">
+    <ng-container *ngIf="changingButtons; else elseChangingButtons">
+      <button class="btn btn-singIn" type="button" (click)="singInClik()">Sing In</button>
+      <button class="btn btn-signUp" type="button" (click)="signUpClik()">Sign Up</button>
+    </ng-container>
+    <ng-template #elseChangingButtons>
+      <div class="button-grup">
+        <h5 class="userName">User name:  {{ user }}</h5>
+        <div>
+          <button class="btn btn-addPost" type="button" (click)="addPostClik()">Add post</button>
+          <button class="btn btn-signOut" type="button" (click)="signOut()">Sign Out</button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</header>
+<div *ngIf="singIn"><app-sing-in 
+  (closeSingIn) = "closeSingIn($event)" 
+  (loginedUser) = "loginedUser($event)"
+  (userName) = "userName($event)"
+  ></app-sing-in></div>
+<div *ngIf="signUp"><app-sign-up (closeSignUp) = "closeSignUp($event)"></app-sign-up></div>
+<div *ngIf="addPost"><app-add-post (closeAddPost) = "closeAddPost($event)" [userName] = "user" [changesNews] = 'changesNews'></app-add-post> </div>
+
+
