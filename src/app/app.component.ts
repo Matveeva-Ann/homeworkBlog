@@ -12,18 +12,19 @@ export class AppComponent {
   public newsArrHome: News[] = [];
   usersHome: User[] = [];
   buttonsShow = false;
-  loggedUser = '';
   loggedUserEmail = '';
   userExit = false;
-  changesNews!: News;
+  changesNews?: News = undefined;
 
   cardEdit(news: News) {
-    this.changesNews = news;   
+    this.changesNews = news;
   }
-  
+
+  onAddModalClose() {
+    this.changesNews = undefined;
+  }
 
   loginedUserName(user: User): void {
-    this.loggedUser = user.name;
     this.loggedUserEmail = user.email;
   }
 
@@ -43,9 +44,8 @@ export class AppComponent {
     this.newsArrHome.map((el) => {
       if (this.userExit) {
         el.status = false;
-        this.loggedUser = '';
       } else if (
-        el.autor === this.loggedUser ||
+        el.email === this.loggedUserEmail ||
         this.loggedUserEmail === 'admin@ukr.net'
       ) {
         el.status = true;

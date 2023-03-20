@@ -1,5 +1,5 @@
 <div class="conteiner">
-  <app-header (loginedUserName) = "loginedUserName($event)" (userSignOut) = "userSignOut($event)" [changesNews] = 'changesNews'></app-header>
+  <app-header (loginedUserName) = "loginedUserName($event)" (onAddNewsModalClose)="onAddModalClose()" (userSignOut) = "userSignOut($event)" [changesNews] = 'changesNews'></app-header>
   <main>
     <div class="main-container">
       <div class="card" *ngFor="let news of newsArrHome">

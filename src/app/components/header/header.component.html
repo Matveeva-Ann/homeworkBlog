@@ -23,9 +23,8 @@
 <div *ngIf="singIn"><app-sing-in 
   (closeSingIn) = "closeSingIn($event)" 
   (loginedUser) = "loginedUser($event)"
-  (userName) = "userName($event)"
   ></app-sing-in></div>
 <div *ngIf="signUp"><app-sign-up (closeSignUp) = "closeSignUp($event)"></app-sign-up></div>
-<div *ngIf="addPost"><app-add-post (closeAddPost) = "closeAddPost($event)" [userName] = "user" [changesNews] = 'changesNews'></app-add-post> </div>
+<div *ngIf="addPost"><app-add-post (closeAddPost) = "closeAddPost($event)" [userName] = "user" [loginedPerson] = "loginedPerson" [changesNews] = 'changesNews'></app-add-post> </div>
 
 

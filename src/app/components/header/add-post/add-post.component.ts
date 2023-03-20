@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { News } from 'src/app/shared/interfaces/interface';
+import { News, User } from 'src/app/shared/interfaces/interface';
 import { ServiceService } from 'src/app/shared/services/service.service';
 
 
@@ -14,7 +14,8 @@ interface CategoryToImageMap {
 export class AddPostComponent {
   @Output() closeAddPost = new EventEmitter<boolean>();
   @Input() userName!: string;
-  @Input() changesNews!: News;
+  @Input() changesNews?: News;
+  @Input() loginedPerson!: User;
 
   titleValue = '';
   categoryValue = '';
@@ -85,6 +86,7 @@ export class AddPostComponent {
         status: true,
         time: this.createDate(),
         img: this.createImg(),
+        email: this.loginedPerson.email
       };
       this.newsAarr.addNewsArr(newPostObj);
       this.closeAddPost.emit(true);
@@ -104,11 +106,11 @@ export class AddPostComponent {
       status: true,
       time: this.createDate(),
       img: this.previousImg,
+      email: this.loginedPerson.email
     };
-     this.newsAarr.addNewsArr(changesPostObj,  this.previousID);
+     this.newsAarr.editNews(changesPostObj,  this.previousID);
      this.resetForm();
      this.changesButton = true;
-     this.changesButton = false;
      this.closeAddPost.emit(true);
   } 
 

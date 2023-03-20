@@ -8,7 +8,8 @@ export interface News{
   autor: string,
   text: string,
   time?: Data | string,
-  status: boolean
+  status: boolean,
+  email: string
 }
 export interface User{
   name: string,

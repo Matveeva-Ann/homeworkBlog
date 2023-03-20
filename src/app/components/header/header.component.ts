@@ -10,7 +10,10 @@ import { ServiceService } from 'src/app/shared/services/service.service';
 export class HeaderComponent {
   @Output() loginedUserName = new EventEmitter<User>();
   @Output() userSignOut = new EventEmitter<boolean>();
-  @Input() changesNews!: News;
+  @Output() onAddNewsModalClose = new EventEmitter<void>();
+  @Input() changesNews?: News;
+
+  loginedPerson!:User;
 
   changingButtons = true;
   singIn = false;
@@ -36,13 +39,13 @@ export class HeaderComponent {
   closeSignUp(event: boolean): void {
     this.signUp = !event;
   }
-  loginedUser(name: User) {
-    this.loginedUserName.emit(name);
-  }
-  userName(event: string) {
-    this.user = event;
+  loginedUser(user: User) {
+    this.loginedUserName.emit(user);
+    this.user = user.name;
     this.changingButtons = false;
+    this.loginedPerson = user;
   }
+ 
   signOut() {
     this.changingButtons = true;
     this.userSignOut.emit(true);
@@ -52,5 +55,6 @@ export class HeaderComponent {
   }
   closeAddPost(event: boolean): void {
     this.addPost = !event;
+    this.onAddNewsModalClose.emit();
   }
 }

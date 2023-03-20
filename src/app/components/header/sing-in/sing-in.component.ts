@@ -31,16 +31,12 @@ export class SingInComponent {
   }
   submit(): void {
     const userIndex = this.singInUsersArr.findIndex(
-      (elem) => elem.email === this.emailValue
+      (elem) =>
+        elem.email === this.emailValue && elem.password === this.passwordValue
     );
-    if (userIndex !== -1) {
-      if (this.singInUsersArr[userIndex].password === this.passwordValue) {
-        this.loginedUser.emit(this.singInUsersArr[userIndex]);
-        this.userName.emit(this.singInUsersArr[userIndex].name);
-        this.closeSingIn.emit(true);
-      } else {
-        this.wrongData = true;
-      }
+    if (this.singInUsersArr[userIndex].password === this.passwordValue) {
+      this.loginedUser.emit(this.singInUsersArr[userIndex]);
+      this.closeSingIn.emit(true);
     } else {
       this.wrongData = true;
     }
