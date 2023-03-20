@@ -10,7 +10,6 @@ import { ServiceService } from 'src/app/shared/services/service.service';
 export class HeaderComponent {
   @Output() loginedUserName = new EventEmitter<User>();
   @Output() userSignOut = new EventEmitter<boolean>();
-  // @Output() newUsersPost = new EventEmitter<News>();
   @Input() changesNews!: News;
 
   changingButtons = true;

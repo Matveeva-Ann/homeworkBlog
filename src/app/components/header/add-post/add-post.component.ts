@@ -2,6 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { News } from 'src/app/shared/interfaces/interface';
 import { ServiceService } from 'src/app/shared/services/service.service';
 
+
+interface CategoryToImageMap {
+  [category: string]: string;
+}
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
@@ -21,44 +25,20 @@ export class AddPostComponent {
   previousID = -1;
   previousImg!: string;
 
-  universalPictures = [
-    {
-      category: 'culture',
-      img: '../assets/img/Culture.jpg',
-    },
-    {
-      category: 'economy',
-      img: '../assets/img/Economy.jpg',
-    },
-    {
-      category: 'history',
-      img: '../assets/img/History.jpg',
-    },
-    {
-      category: 'policy',
-      img: '../assets/img/Policy.jpg',
-    },
-    {
-      category: 'science',
-      img: '../assets/img/Science.jpg',
-    },
-    {
-      category: 'sport',
-      img: '../assets/img/sport.jpg',
-    },
-    {
-      category: 'world',
-      img: '../assets/img/World.jpg',
-    },
-    {
-      category: 'other',
-      img: '../assets/img/Other2.jpg',
-    },
-    {
-      category: '',
-      img: '../assets/img/Other2.jpg',
-    },
-  ];
+  categoryToImage: CategoryToImageMap = {
+    culture: '../assets/img/Culture.jpg',
+    economy: '../assets/img/Economy.jpg',
+    history: '../assets/img/History.jpg',
+    policy: '../assets/img/Policy.jpg',
+    science: '../assets/img/Science.jpg',
+    sport: '../assets/img/sport.jpg',
+    world: '../assets/img/World.jpg',
+    other: '../assets/img/Other2.jpg',
+  };
+  
+  createImg() {
+    return  this.categoryToImage[this.categoryValue] || this.categoryToImage['other'];
+  }
 
   constructor(private newsAarr: ServiceService) {}
 
@@ -86,12 +66,7 @@ export class AddPostComponent {
     });
     return postData
   }
-  createImg(){
-    this.img = this.universalPictures.find(
-      (elem) => elem.category === this.categoryValue
-    );
-    return this.img.img;
-  }
+
   resetForm(){
     this.titleValue = '';
     this.categoryValue = '';
@@ -99,7 +74,8 @@ export class AddPostComponent {
   }
   submitClick() {
     if (this.textValue.trim() !== '' && this.titleValue.trim() !== '' && this.categoryValue !== ''){
-      const id = this.newsAarr.getNewsArr().slice(-1)[0].id +1;
+      const id = this.newsAarr.getNewsArr().length > 0 ? this.newsAarr.getNewsArr().slice(-1)[0].id +1 : 1;
+      
       const newPostObj: News = {
         id: id,
         title: this.titleValue,
