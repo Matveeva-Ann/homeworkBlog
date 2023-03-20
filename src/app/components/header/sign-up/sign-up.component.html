@@ -11,8 +11,7 @@
       <input type="email" [(ngModel)]="emailValue" id="email" placeholder="write here...">
       <label for="password" class="label">Password:</label>
       <input type="password" [(ngModel)]="passwordValue" id="password" placeholder="write here...">
-      <p class="massage" *ngIf="showMassage">* Користувач з таким email вже існує</p>
-      <p class="massage" *ngIf="showMassage2">* Заповніть всі поля</p>
+      <p class="message">{{showMessage}}</p>
     </div>
     <div class="footer">
       <button type="button" class="footer-btn" (click)="close()">Close</button>

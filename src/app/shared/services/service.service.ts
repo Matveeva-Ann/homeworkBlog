@@ -77,7 +77,7 @@ export class ServiceService {
   }
   editNews( updateNews: News, id: number): void{
     const index = this.newsArr.findIndex(news => news.id === id);
-    this.newsArr.splice(index, 1, updateNews)
+    this.newsArr[index] = updateNews;
   }
   
 

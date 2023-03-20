@@ -2,19 +2,25 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { User } from 'src/app/shared/interfaces/interface';
 import { ServiceService } from 'src/app/shared/services/service.service';
 
+enum Messege{
+  existEmail = '* Користувач з таким email вже існує',
+  emptyFields = '* Заповніть всі поля'
+}
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
+
 export class SignUpComponent {
   @Output() closeSignUp = new EventEmitter<boolean>();
 
   usernameValue = '';
   emailValue = '';
   passwordValue = '';
-  showMassage = false;
-  showMassage2 = false;
+  showMessage!: string;
+
 
   userArrSignUp: User[] = []
   constructor(private registeredUsers:  ServiceService){
@@ -28,11 +34,9 @@ export class SignUpComponent {
   }
   submit():void{
     if (this.userArrSignUp.some(elem => elem.email === this.emailValue)){
-      this.showMassage = true;
-      this.showMassage2 = false;
+      this.showMessage = Messege.existEmail;
     } else if (this.usernameValue.trim() === '' || this.emailValue.trim() === '' || this.passwordValue.trim() === ''){
-      this.showMassage2 = true;
-      this.showMassage = false;
+      this.showMessage = Messege.emptyFields;
     }else{
       this.createNewUser();
     }
