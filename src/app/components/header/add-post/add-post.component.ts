@@ -34,6 +34,8 @@ export class AddPostComponent {
     science: '../assets/img/Science.jpg',
     sport: '../assets/img/sport.jpg',
     world: '../assets/img/World.jpg',
+    technologies: '../assets/img/Technologies.jpg',
+    art: '../assets/img/art.jpg',
     other: '../assets/img/Other2.jpg',
   };
   

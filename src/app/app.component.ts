@@ -15,6 +15,7 @@ export class AppComponent {
   loggedUserEmail = '';
   userExit = false;
   changesNews?: News = undefined;
+  searchRequest = '';
 
   cardEdit(news: News) {
     this.changesNews = news;
@@ -27,7 +28,9 @@ export class AppComponent {
   loginedUserName(user: User): void {
     this.loggedUserEmail = user.email;
   }
-
+  resetRequest(){
+    this.searchRequest = '';
+  }
   constructor(public newsArr: ServiceService) {}
 
   ngOnInit(): void {

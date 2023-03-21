@@ -1,8 +1,12 @@
 <div class="conteiner">
   <app-header (loginedUserName) = "loginedUserName($event)" (onAddNewsModalClose)="onAddModalClose()" (userSignOut) = "userSignOut($event)" [changesNews] = 'changesNews'></app-header>
   <main>
+    <div class="search-wrapper">
+      <input type="text" class="search" placeholder="search by news title..." [(ngModel)]="searchRequest">
+      <span class="search-cross" (click)="resetRequest()">&times;</span>
+    </div>
     <div class="main-container">
-      <div class="card" *ngFor="let news of newsArrHome">
+      <div class="card" *ngFor="let news of newsArrHome | serchPipe:searchRequest">
         <img [src]="news.img" alt="" class="card-img">
         <div class="wrapper">
           <p class="card-caregori">{{news.category}}</p>
