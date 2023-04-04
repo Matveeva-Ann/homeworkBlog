@@ -10,6 +10,9 @@ import { SingInComponent } from './components/header/sing-in/sing-in.component';
 import { SignUpComponent } from './components/header/sign-up/sign-up.component';
 import { AddPostComponent } from './components/header/add-post/add-post.component';
 import { SerchPipePipe } from './shared/pipes/serch-pipe.pipe';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { SerchPipePipe } from './shared/pipes/serch-pipe.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]

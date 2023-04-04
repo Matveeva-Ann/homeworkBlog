@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { getDownloadURL, percentage, ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
+import { UrlHandlingStrategy } from '@angular/router';
 import { News, User } from 'src/app/shared/interfaces/interface';
 import { ServiceService } from 'src/app/shared/services/service.service';
 
@@ -16,15 +18,19 @@ export class AddPostComponent {
   @Input() userName!: string;
   @Input() changesNews?: News;
   @Input() loginedPerson!: User;
+  public uploadPercent=0;
+  public isUploaded = false;
 
   titleValue = '';
   categoryValue = '';
   textValue = '';
+  imgValue ='';
   img!: any;
   incorrectlyFormMessage = false;
   changesButton = true;
   previousID = -1;
   previousImg!: string;
+  addPhoto = false;
 
   categoryToImage: CategoryToImageMap = {
     culture: '../assets/img/Culture.jpg',
@@ -40,10 +46,16 @@ export class AddPostComponent {
   };
   
   createImg() {
-    return  this.categoryToImage[this.categoryValue] || this.categoryToImage['other'];
+    if(this.addPhoto){
+      return this.url;
+    }else{
+      return  this.categoryToImage[this.categoryValue] || this.categoryToImage['other'];
+    }
   }
 
-  constructor(private newsAarr: ServiceService) {}
+  constructor(private newsAarr: ServiceService,
+              private storage: Storage
+    ) {}
 
   closeClick() {
     this.closeAddPost.emit(true);
@@ -114,6 +126,40 @@ export class AddPostComponent {
      this.resetForm();
      this.changesButton = true;
      this.closeAddPost.emit(true);
-  } 
+    }
 
+    upload (event:any):void{
+      const file = event.target.files[0];
+      console.log(file)
+      console.log(event.target)
+      console.log(event.target.files)
+      this.uploadFile('img', file.name, file);
+      this.valueContlol();
+    }
+    public  url = '';
+    async uploadFile(folder:string, name: string, file: File | null): Promise<string>{
+      const path = `${folder}/${name}`;
+      if(file){
+        const storageRef = ref(this.storage, path);
+        const task = uploadBytesResumable(storageRef, file);
+        percentage(task).subscribe(data =>{
+          this.uploadPercent = data.progress;
+        })
+        await task;
+        this.url = await getDownloadURL(storageRef);
+      }else{
+        console.log('wrong format')
+      }
+       return Promise.resolve(this.url); 
+    }
+
+    valueContlol(): any{
+      this.isUploaded = true;
+      this.addPhoto = true;
+      return this.url;
+    }
+    deleteImg():void{
+      const task = ref(this.storage, this.url);
+      
+    }
 }

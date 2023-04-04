@@ -24,7 +24,9 @@
       <label for="text">Text:</label>
       <textarea name="text" id="text" [(ngModel)]="textValue"></textarea>
       <label for="img"></label>
-      <input type="file" name="file" id="img">
+      <input type="file" name="file"  [(ngModel)]="imgValue" id="img" (change)="upload($event)">
+      <span>{{uploadPercent}} %</span>
+      <img [src]="valueContlol()" *ngIf="isUploaded" class="img">
       <p class="message" *ngIf="incorrectlyFormMessage">* Сheck that the form is filled in correctly</p>
     </form>
     <div class="footer">
